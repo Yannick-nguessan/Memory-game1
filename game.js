@@ -1,4 +1,5 @@
 
+
 var buttonColours = ["red", "blue", "green", "yellow"];
 
 var gamePattern = [];
@@ -7,25 +8,28 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
-$(document).keydown(function() {
-  if (!started) {
+
+
+$(".btn").click(function() {
+   
+  if(!started){
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
   }
-});
-
-
-$(".btn").click(function() {
-
+  else{
+    
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
-  playSound(userChosenColour);
+  var audio = new Audio("sounds/green.mp3");
+  audio.play();
   animatePress(userChosenColour);
 
   //2. Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
   checkAnswer(userClickedPattern.length-1);
+  }
+
 });
 
 
@@ -58,7 +62,7 @@ function checkAnswer(currentLevel) {
         $("body").removeClass("game-over");
       }, 200);
 
-      $("h1").text("Game Over, Press Any Key to Restart");
+      $("h1").text("Game 🕹️​ Over,You lost at Level "+level+""+"❗​"+ ""+""+""+"Touch any button to restart 🔄​");
       startOver();
 
     }
