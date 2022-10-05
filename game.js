@@ -22,8 +22,7 @@ $(".btn").click(function() {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
-  var audio = new Audio("sounds/green.mp3");
-  audio.play();
+  playSound(userChosenColour);
   animatePress(userChosenColour);
 
   //2. Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
